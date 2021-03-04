@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\DTO\ItemDto;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="public.struct")
  */
 
-class ItemsEntity
+class ItemsEntity extends TransferableEntity
 {
 
     /**
@@ -51,4 +52,59 @@ class ItemsEntity
      */
     private $responsible;
 
+    /**
+     * @return int
+     */
+    public function getId(): int {
+        return $this->id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getParentId(): ?int {
+        return $this->parentId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDate(): ?string
+    {
+        return $this->date;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getResponsible(): ?string
+    {
+        return $this->responsible;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function getIsLeave(): ?bool
+    {
+        return $this->isLeave;
+    }
+
+    /**
+     * @return ItemDto
+     */
+    public function getEntityDtoObject(): ItemDto
+    {
+        return new ItemDto();
+    }
 }

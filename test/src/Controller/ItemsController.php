@@ -19,14 +19,13 @@ class ItemsController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * @Route("/getItem/{id}", methods={"GET"})
+     * @param $id
      * @return Response
      */
-    public function getItem(Request $request)
+    public function getItem($id): Response
     {
-        $id = $request->query->get('id');
-        $item = $this->itemsService->getItems($id);
-
-        return new Response('hj');
+        $item = $this->itemsService->getItems($id)->toDto();
+        return new Response(json_encode($item));
     }
 }
